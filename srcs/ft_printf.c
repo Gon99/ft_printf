@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/07 13:10:15 by goliano-          #+#    #+#             */
+/*   Updated: 2021/09/07 15:24:34 by goliano-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../libft/libft.h"
+#include "../includes/ft_printf.h"
 
 #include <stdarg.h>
 
@@ -17,45 +30,7 @@ void print_str(char *cad)
 	free(word);
 }
 
-static int hex_length(int n)
-{
-	int count;
 
-	count = 1;
-	while (n / 16 > 0)
-	{
-		n /= 16;
-		count++;
-	}
-	return (count);
-}
-
-char*	to_hex(int n)
-{
-	int	l;
-	char	*hex;
-	int	aux;
-	int	i;
-
-	l = hex_length(n);
-	hex = malloc(sizeof(char) * (l + 1));
-	aux = 0;
-	i = l - 1;
-	if (!hex)
-		return (0);
-	while (n != 0)
-	{
-		aux = n % 16;
-		if (aux < 10)
-			aux = aux + 48;
-		else
-			aux = aux + 55;
-		hex[i--] = aux;
-		n /= 16;
-	}
-	hex[l] = '\0';
-	return (hex);
-}
 
 static int handle_formats(char c1, char c2, va_list args)
 {
@@ -75,10 +50,10 @@ static int handle_formats(char c1, char c2, va_list args)
 	/*else if (c1 == '%' && c2 == 'u')	
 		print_unsigned_int(va_arg(args, char *));*/
 	else if (c1 == '%' && c2 == 'x')	
-		print_str(to_hex(va_arg(args, int)));
-	/*else if (c1 == '%' && c2 == 'X')	
-		print_hex_up(va_arg(args, char *));
-	else if (c1 == '%' && c2 == '%')	
+		print_str(to_hex(va_arg(args, int), 0));
+	else if (c1 == '%' && c2 == 'X')	
+		print_str(to_hex(va_arg(args, int), 1));
+	/*else if (c1 == '%' && c2 == '%')	
 		print_p_sign(va_arg(args, char *));*/
 	else
 		ret = 0;
@@ -110,8 +85,8 @@ int main()
 	//int n = 5;
 	//float o = 5.2;
 
-	ft_printf("1: %s\n2: %s\n3: %c\n4: %d\n5: %i\n6: %i\n7: %x\n", "hola", "prueba", 'p', 2147483647, 0, -202, -10);
-	printf("OR: %x\n", -10);
+	ft_printf("1: %s\n2: %s\n3: %c\n4: %d\n5: %i\n6: %i\n7: %x\n", "hola", "prueba", 'p', 2147483647, 0, -202, -1);
+	printf("OR: %x\n", -1);
 	//printf("1: %s\n2: %s\n3: %c\n4: %d\n5: %i\n6: %i\n", "hola", "prueba", 'p', 2147483648, 0, -202);
 	//ft_printf("%s\n %d\n %f\n", cad, n, o);
 	//ft_printf("%s", cad);

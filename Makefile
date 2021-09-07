@@ -6,11 +6,11 @@
 #    By: goliano- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/06 12:24:54 by goliano-          #+#    #+#              #
-#    Updated: 2021/09/06 12:29:27 by goliano-         ###   ########.fr        #
+#    Updated: 2021/09/07 13:13:17 by goliano-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			=	./srcs/ft_printf.c
+SRCS			=	./srcs/ft_printf.c ./utils/hex_convertion.c
 
 OBJS			= $(SRCS:.c=.o)
 
