@@ -13,9 +13,11 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include <stdlib.h>
-#include <stdio.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <stdint.h>
 
-char	*to_hex(int n, int t);
+char	*to_hex(uintptr_t n, int t);
+void    ft_putunbr(long n);
 
 #endif

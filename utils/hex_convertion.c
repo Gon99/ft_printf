@@ -25,9 +25,9 @@ static int hex_length(int n)
 	return (count);
 }
 
-static void	handle_hex(int n, int i, char *hex, int t)
+static void	handle_hex(long	n, int i, char *hex, int t)
 {
-	int	aux;
+	long	aux;
 
 	aux = 1;
 	while (n != 0)
@@ -42,11 +42,12 @@ static void	handle_hex(int n, int i, char *hex, int t)
 		hex[i--] = aux;
 		n /= 16;
 	}
+	printf("hex: %s\n", hex);
 }
 
-char	*to_hex(int n, int t)
+char	*to_hex(long n, int t)
 {
-	int		l;
+	size_t	l;
 	char	*hex;
 
 	l = hex_length(n);

@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			=	./srcs/ft_printf.c ./utils/hex_convertion.c
+SRCS			=	./srcs/ft_printf.c ./utils/hex_convertion.c ./utils/putunbr.c
 
 OBJS			= $(SRCS:.c=.o)
 
