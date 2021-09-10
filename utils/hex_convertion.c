@@ -6,15 +6,15 @@
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 13:01:45 by goliano-          #+#    #+#             */
-/*   Updated: 2021/09/07 15:24:38 by goliano-         ###   ########.fr       */
+/*   Updated: 2021/09/10 13:36:22 by goliano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static int hex_length(int n)
+static int	hex_length(unsigned long int n)
 {
-	int count;
+	int	count;
 
 	count = 1;
 	while (n / 16 > 0)
@@ -25,9 +25,9 @@ static int hex_length(int n)
 	return (count);
 }
 
-static void	handle_hex(long	n, int i, char *hex, int t)
+static void	handle_hex(unsigned long int n, int i, char *hex, int t)
 {
-	long	aux;
+	unsigned long int	aux;
 
 	aux = 1;
 	while (n != 0)
@@ -42,10 +42,9 @@ static void	handle_hex(long	n, int i, char *hex, int t)
 		hex[i--] = aux;
 		n /= 16;
 	}
-	printf("hex: %s\n", hex);
 }
 
-char	*to_hex(long n, int t)
+char	*to_hex(unsigned long int n, int t)
 {
 	size_t	l;
 	char	*hex;
