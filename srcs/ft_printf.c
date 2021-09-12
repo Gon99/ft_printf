@@ -22,6 +22,8 @@ static int	print_str(char *cad)
 	char	*word;
 
 	i = 0;
+	if (!cad || !*cad)
+		return (i);
 	word = ft_strdup(cad);
 	while (word[i])
 	{
@@ -60,27 +62,27 @@ static char*	print_pointer(void *ptr)
 
 static int	handle_formats(char c1, char c2, va_list args)
 {
-	size_t	l;
+	int	l;
 
-	l = 1;
+	l = 0;
 	if (c1 == '%' && c2 == 'c')
-		ft_putchar_fd(va_arg(args, int), 1);
+		l = ft_putchar_fd(va_arg(args, int), 1);
 	else if (c1 == '%' && c2 == 's')
 		l = print_str(va_arg(args, char *));
 	else if (c1 == '%' && c2 == 'p')
 		l = print_str(print_pointer(va_arg(args, unsigned int *)));
 	else if (c1 == '%' && (c2 == 'd' || c2 == 'i'))
-		ft_putnbr_fd(va_arg(args, int), 1);
+		ft_putnbr_fd(va_arg(args, int), 1, &l);
 	else if (c1 == '%' && c2 == 'u')
-		ft_putunbr(va_arg(args, long));
+		ft_putunbr(va_arg(args, long), &l);
 	else if (c1 == '%' && c2 == 'x')
 		l = print_str(to_hex(va_arg(args, unsigned int), 0));
 	else if (c1 == '%' && c2 == 'X')
 		l = print_str(to_hex(va_arg(args, unsigned int), 1));
 	else if (c1 == '%' && c2 == '%')
-		ft_putchar_fd('%', 1);
+		l = ft_putchar_fd('%', 1);
 	else
-		l = 0;
+		l = -1;
 	return (l);
 }
 
@@ -98,8 +100,11 @@ int	ft_printf(const char *cad, ...)
 	while (cad[i])
 	{
 		l = handle_formats(cad[i], cad[i + 1], args);
-		if (l > 0)
+		if (l >= 0)
+		{
+			tl += l;
 			i++;
+		}
 		else
 		{
 			write(1, &cad[i], 1);
@@ -107,13 +112,12 @@ int	ft_printf(const char *cad, ...)
 			l = 0;
 		}
 		i++;
-		tl += l;
 	}
 	va_end(args);
 	return (tl);
 }
 
-int main()
+/*int main()
 {
 	//char cad[] = "Hola";
 	//int n = 5;
@@ -122,9 +126,11 @@ int main()
 	char p[] = "";
 	int	n;
 	int n1;
+	int i = 0;
+	char c = 'r';
 	//check max value unsigned int -1, 2147483647
-	n1 = ft_printf("FT: NULL: %s\n", p);
-	n = printf("OR: NULL: %s\n", p);
+	n1 = ft_printf("FT: %s\nI: %d\nC: %c\n", p, i, c);
+	n = printf("OR: %s\nI: %d\nC: %c\n", p, i, c);
 	printf("N1: %d\n", n1);
 	printf("N: %d\n", n);
 	//n2 = printf("NULL\n");
@@ -132,4 +138,4 @@ int main()
 	//printf("1: %s\n2: %s\n3: %c\n4: %d\n5: %i\n6: %i\n", "hola", "prueba", 'p', 2147483648, 0, -202);
 	//ft_printf("%s\n %d\n %f\n", cad, n, o);
 	//ft_printf("%s", cad);
-}
+}*/

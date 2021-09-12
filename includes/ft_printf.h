@@ -18,6 +18,6 @@
 # include <stdint.h>
 
 char	*to_hex(unsigned long int n, int t);
-void    ft_putunbr(long n);
+void    ft_putunbr(long n, int *l);
 
 #endif

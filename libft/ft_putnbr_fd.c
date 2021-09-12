@@ -17,24 +17,25 @@ static void	ft_putchar(char c, int fd)
 	write(fd, &c, 1);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd, int *l)
 {
+	*l = *l + 1;
 	if (n == -2147483648)
 	{
 		write(fd, "-2147483648", 11);
-		return ;
+		*l = 10;
 	}
 	if (n < 0)
 	{
 		ft_putchar('-', fd);
 		n = -n;
-		ft_putnbr_fd(n, fd);
+		ft_putnbr_fd(n, fd, l);
 	}
 	else
 	{
 		if (n > 9)
 		{
-			ft_putnbr_fd(n / 10, fd);
+			ft_putnbr_fd(n / 10, fd, l);
 			ft_putchar(n % 10 + '0', fd);
 		}
 		else
