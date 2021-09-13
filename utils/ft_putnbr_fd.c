@@ -1,28 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/02 15:47:01 by goliano-          #+#    #+#             */
-/*   Updated: 2021/08/09 16:23:29 by goliano-         ###   ########.fr       */
+/*   Created: 2021/09/13 14:30:40 by goliano-          #+#    #+#             */
+/*   Updated: 2021/09/13 16:10:54 by goliano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
-void	ft_putendl_fd(char *s, int fd)
+static void	ft_putchar(char c, int fd)
 {
-	int		i;
+	write(fd, &c, 1);
+}
 
-	i = 0;
-	if (!s)
-		return ;
-	while (s[i] != '\0')
+void	ft_putnbr_fd(int n, int fd, int *l)
+{
+	*l = *l + 1;
+	if (n == -2147483648)
 	{
-		write(fd, &s[i], 1);
-		i++;
+		write(fd, "-2147483648", 11);
+		*l = 11;
+		return ;
 	}
-	write(fd, "\n", 1);
+	if (n < 0)
+	{
+		ft_putchar('-', fd);
+		n = -n;
+		ft_putnbr_fd(n, fd, l);
+	}
+	else
+	{
+		if (n > 9)
+		{
+			ft_putnbr_fd(n / 10, fd, l);
+			ft_putchar(n % 10 + '0', fd);
+		}
+		else
+			ft_putchar(n + '0', fd);
+	}
 }

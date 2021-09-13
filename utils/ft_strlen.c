@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/06 13:35:37 by goliano-          #+#    #+#             */
-/*   Updated: 2021/08/06 13:55:40 by goliano-         ###   ########.fr       */
+/*   Created: 2021/09/13 14:33:36 by goliano-          #+#    #+#             */
+/*   Updated: 2021/09/13 14:40:08 by goliano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
-t_list	*ft_lstlast(t_list *lst)
+size_t	ft_strlen(char const *s)
 {
-	int	l;
-	int	i;
+	size_t	i;
 
 	i = 0;
-	l = ft_lstsize(lst);
-	while (i < l - 1)
-	{
-		lst = lst->next;
+	while (s[i] != '\0')
 		i++;
-	}
-	return (lst);
+	return (i);
 }

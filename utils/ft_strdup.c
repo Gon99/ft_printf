@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/02 14:47:49 by goliano-          #+#    #+#             */
-/*   Updated: 2021/08/09 16:13:09 by goliano-         ###   ########.fr       */
+/*   Created: 2021/09/13 14:31:37 by goliano-          #+#    #+#             */
+/*   Updated: 2021/09/13 14:39:41 by goliano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+char	*ft_strdup(const char *s1)
 {
+	int		l;
+	char	*str;
 	int		i;
 
+	l = ft_strlen(s1);
+	str = (char *)malloc(sizeof(char) * l + 1);
 	i = 0;
-	if (!s)
-		return ;
-	while (s[i] != '\0')
+	if (str == NULL)
+		return (NULL);
+	while (i < l)
 	{
-		f(i, &s[i]);
+		str[i] = s1[i];
 		i++;
 	}
+	str[i] = '\0';
+	return (str);
 }
+
