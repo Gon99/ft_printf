@@ -6,7 +6,7 @@
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 13:10:15 by goliano-          #+#    #+#             */
-/*   Updated: 2021/09/13 17:11:21 by goliano-         ###   ########.fr       */
+/*   Updated: 2021/09/15 11:00:36 by goliano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,11 @@ int	ft_printf(const char *cad, ...)
 	int		tl;
 	va_list	args;
 
-	i = 0;
+	i = -1;
 	va_start(args, cad);
 	l = 0;
 	tl = 0;
-	while (cad[i])
+	while (cad[++i])
 	{
 		l = handle_formats(cad[i], cad[i + 1], args);
 		if (l >= 0)
@@ -112,11 +112,8 @@ int	ft_printf(const char *cad, ...)
 		{
 			write(1, &cad[i], 1);
 			tl++;
-			l = 0;
 		}
-		i++;
 	}
 	va_end(args);
 	return (tl);
 }
-
