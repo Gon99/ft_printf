@@ -6,7 +6,7 @@
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 13:06:05 by goliano-          #+#    #+#             */
-/*   Updated: 2021/09/13 17:13:06 by goliano-         ###   ########.fr       */
+/*   Updated: 2021/09/15 11:12:34 by goliano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdio.h>
 # include <stdint.h>
 # include <unistd.h>
+# include <stdarg.h>
+# include <stdint.h>
 
 char	*to_hex(unsigned long int n, int t);
 void	ft_putunbr(unsigned int n, int *l);

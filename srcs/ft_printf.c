@@ -12,9 +12,6 @@
 
 #include "../includes/ft_printf.h"
 
-#include <stdarg.h>
-#include <stdint.h>
-
 static int	print_str(char *cad, int im)
 {
 	int		i;
